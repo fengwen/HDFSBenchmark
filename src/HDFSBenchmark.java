@@ -39,7 +39,7 @@ public class HDFSBenchmark implements Tool{
 			" -readpercent A" +
 			" -writepercent B" +
 			" -nrfiles N" +
-			" -size Size[B|KB|MB|GB|TB] ]";
+			" -filesize Size[B|KB|MB|GB|TB] ]";
 
 	static{
 		Configuration.addDefaultResource("hdfs-default.xml");
@@ -177,7 +177,7 @@ public class HDFSBenchmark implements Tool{
 			res = -2;
 		}
 		if(res == -1)
-			System.err.print(USAGE);
+			System.err.println(USAGE);
 		System.exit(res);
 	}
 
@@ -276,6 +276,10 @@ public class HDFSBenchmark implements Tool{
 	}
 
 	private void prepareExperiment(FileSystem fs, int numReadFiles, long bytesOfFiles) throws FileNotFoundException, IOException{
+		//make the read write directory
+		fs.mkdirs(getReadDir(this.config));
+		fs.mkdirs(getWriteDir(this.config));
+	
 		//first create necessary read files
 		int numberOfReadFilesInHDFS =0; 
 		RemoteIterator<LocatedFileStatus> itRead = fs.listFiles(getReadDir(this.config), true);
