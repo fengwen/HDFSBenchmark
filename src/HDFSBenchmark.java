@@ -246,6 +246,7 @@ public class HDFSBenchmark implements Tool{
 		prepareExperiment(fs, numReadFiles, nrBytes);
 		long[] results = startExperiment(fs, numReadFiles, numWriteFiles, nrBytes);		//results[0] read total time in sec, results[1] write total time
 		analyzeResult(numReadFiles, numWriteFiles, nrBytes, results);
+		cleanup(fs);
 		return 0;
 	}
 
@@ -279,8 +280,15 @@ public class HDFSBenchmark implements Tool{
 
 	private void prepareExperiment(FileSystem fs, int numReadFiles, long bytesOfFiles) throws FileNotFoundException, IOException{
 		//make the read write directory
-		fs.mkdirs(getReadDir(this.config));
-		fs.mkdirs(getWriteDir(this.config));
+		if(fs.mkdirs(new Path(getBaseDir(this.config)))){
+			System.out.println("success making base dir: " + getBaseDir(this.config));
+		}
+		if(fs.mkdirs(getReadDir(this.config))){
+			System.out.println("success making read dir " + getReadDir(this.config));
+		}
+		if(fs.mkdirs(getWriteDir(this.config))){
+			System.out.println("success making write dir " + getWriteDir(this.config));
+		}
 	
 		//first create necessary read files
 		int numberOfReadFilesInHDFS =0; 
