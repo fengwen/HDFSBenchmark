@@ -143,8 +143,8 @@ public class HDFSBenchmark implements Tool{
                 try {
                 	long startTime = System.currentTimeMillis();
 					br = new BufferedReader(new InputStreamReader(fs.open(filePath)));
-					String line;
-                    line=br.readLine();
+					String line = null;
+                    line = br.readLine();
                     while (line != null){
                             line=br.readLine();
                     }
@@ -301,6 +301,7 @@ public class HDFSBenchmark implements Tool{
 			numberOfReadFilesInHDFS++;
 			itRead.next();
 		}
+		System.out.println(HDFSBenchmark.class.getSimpleName() + " need to create " + numberOfReadFilesInHDFS + " files for read.");
 		if(numReadFiles > numberOfReadFilesInHDFS){
 			for(int i = numberOfReadFilesInHDFS + 1; i <= numReadFiles; i++){
 				String currReadFileName = BASE_FILE_NAME + i;
