@@ -254,6 +254,8 @@ public class HDFSBenchmark implements Tool{
 		double writeThroughput = toMB(numWriteFiles * nrBytes / (readWriteExecutionTime[1] / 1000.0));
 
 		System.out.println("Experiment result: ");
+		System.out.println("total read execution time in sec: " + (readWriteExecutionTime[0]/1000.0));
+		System.out.println("total write execution time in sec: " + (readWriteExecutionTime[1]/1000.0));
 		System.out.println("Read throughput (Mb/sec): " + readThroughput);
 		System.out.println("Write throughput (Mb/sec): " + writeThroughput);
 	}
