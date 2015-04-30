@@ -149,7 +149,7 @@ public class HDFSBenchmark implements Tool{
                             line=br.readLine();
                     }
                     long endTime = System.currentTimeMillis();
-                    this.readExecutionTime = endTime - startTime;
+                    this.readExecutionTime += endTime - startTime;
 				} catch (IOException e) {
 					System.err.println(HDFSReadDaemon.class.getSimpleName() + " read failed");
 				} finally {
