@@ -335,7 +335,7 @@ public class HDFSBenchmark implements Tool{
 	}
 
 	private static String getBaseDir(Configuration conf) {
-		return conf.get("test.build.data", BASE_DIR_NAME + "TestDFSIO");
+		return conf.get("test.build.data", BASE_DIR_NAME + "TestHDFSProportionIO");
 	}
 
 	private static Path getWriteDir(Configuration conf) {
