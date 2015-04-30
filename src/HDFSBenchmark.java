@@ -105,6 +105,7 @@ public class HDFSBenchmark implements Tool{
 		public void run() {
 			for(int i = 1; i <= this.numberOfFiles; i++){
 				String fileName = BASE_FILE_NAME + i;
+				System.out.println(HDFSWriteDaemon.class.getSimpleName() + ": writing " + fileName);
 				try {
 					this.writeExecutionTime += writeToHDFSWithBytes(this.fs, new Path(getWriteDir(this.config), fileName), this.bytes);
 				} catch (IOException e) {
@@ -136,6 +137,7 @@ public class HDFSBenchmark implements Tool{
 		public void run() {
 			for(int i = 1; i <= this.numberOfFiles; i++){
 				String fileName = BASE_FILE_NAME + i;
+				System.out.println(HDFSReadDaemon.class.getSimpleName() + ": reading " + fileName);
 				Path filePath = new Path(getReadDir(this.config), fileName);
 				BufferedReader br = null;
                 try {
