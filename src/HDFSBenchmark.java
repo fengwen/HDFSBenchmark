@@ -122,6 +122,8 @@ public class HDFSBenchmark implements Tool{
 		private long readExecutionTime;
 		
 		public HDFSReadDaemon(FileSystem fs, Configuration config, int numberOfFiles){
+			this.readExecutionTime = 0;
+			this.config = config;
 			this.fs = fs;
 			this.numberOfFiles = numberOfFiles;
 		}
