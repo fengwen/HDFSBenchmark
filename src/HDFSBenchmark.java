@@ -15,6 +15,14 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 
+/**
+ * HDFSBenchmark. Some part of it is borrowed from TestDFSIO.java in HDFS map reduce client code.
+ * This essentially test HDFS read/write throughput by creating files that are read/write in proportion
+ * to each other.
+ * 
+ * @author AllenLiu
+ */
+
 public class HDFSBenchmark implements Tool{
 
 	private Configuration config;
